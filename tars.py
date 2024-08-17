@@ -17,8 +17,11 @@ import urllib.parse
 import json
 import ffmpeg
 import bs4
+import datetime
 from youtubesearchpython import VideosSearch
 import pyjokes
+USERNAME = "Vansh"
+BOTNAME = "TARS"
 def talk(audio):
     print(audio)
     with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as fp:
@@ -29,6 +32,16 @@ def talk(audio):
         mixer.init()
         mixer.music.load(file_path)
         mixer.music.play()
+
+def greetUser():
+    hour = datetime.datetime.now().hour
+    if(hour>=6) and (hour<12):
+        talk(f"Good Morning {USERNAME}")
+    elif (hour>=12) and (hour<16):
+        talk(f"Good afternoon {USERNAME}")
+    else:
+        talk(f"Good evening {USERNAME}")
+    talk(f"I am {BOTNAME}. How may I assist you ?")
 def myCommand():
     "listens for commands"
     # Initialize the recognizer
@@ -167,11 +180,6 @@ def tars(command):
         temp = data['main']['temp']
         round_temp = int(round(temp))
         talk('It is {} degree celcius in {}'.format(round_temp, city))
-        time.sleep(3)
-
-
-    elif "hello" in command:
-        talk("Hello! I am TARS. How can I help you?")
         time.sleep(3)
     elif "who are you" in command:
         talk("I am one of four former U.S. Marine Corps tactical robots")
