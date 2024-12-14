@@ -1,5 +1,13 @@
+bs4
+ffmpeg-python
 gTTS
-SpeechRecognition
-PyAudio
+mixer
 pygame
+pytube
+requests
 selenium
+speechrecognition
+youtubesearchpython
+pyjokes
+SpeechRecognition
+pyaudio
