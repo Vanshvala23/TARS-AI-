@@ -9,11 +9,9 @@ TARS AI is an intelligent conversational assistant built with Python, leveraging
 
 ## Technologies Used
 - Python - The core programming language for the project.
-- GPT API (e.g., OpenAI) - For intelligent conversational abilities.
+- GPT API (e.g., Gemini) - For intelligent conversational abilities.
 - Selenium - Used for automation testing and web interactions.
 ##Other Libraries:
-- pyjokes - To generate jokes.
-- pytube - For downloading and handling YouTube content.
 - gTTS - For text-to-speech conversions.
 - SpeechRecognition - For voice input processing.
 - Requests - For making API requests.
