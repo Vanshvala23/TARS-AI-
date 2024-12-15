@@ -4,6 +4,10 @@ import speech_recognition as sr
 import pyttsx3  # Local text-to-speech library
 import time
 import threading
+from colorama import init, Fore
+
+# Initialize colorama
+init(autoreset=True)
 
 # Set up Gemini API
 KEY = 'AIzaSyCKA_SwVEjM3TzvvXAzD9pEsjwRBJVf1_Y'
@@ -32,7 +36,7 @@ engine = pyttsx3.init()
 
 # Function for faster text-to-speech using pyttsx3
 def talk(audio):
-    print(audio)
+    print(Fore.GREEN + audio)  # Color the output green
     engine.say(audio)
     engine.runAndWait()
 
@@ -40,18 +44,18 @@ def talk(audio):
 def myCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("Listening for your command...")
+        print(Fore.YELLOW + "Listening for your command...")  # Change text color to yellow
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
-        print("Analyzing...")
+        print(Fore.YELLOW + "Analyzing...")  # Change text color to yellow
 
     try:
         command = r.recognize_google(audio).lower()
-        print(f"You said: {command}")
+        print(Fore.CYAN + f"You said: {command}")  # Color the recognized command cyan
         time.sleep(2)
     except sr.UnknownValueError:
-        print("Sorry, I couldn't hear you clearly. Could you please repeat?")
+        print(Fore.RED + "Sorry, I couldn't hear you clearly. Could you please repeat?")  # Color error message red
         command = myCommand()
     
     return command
@@ -63,7 +67,7 @@ def process_speech(command):
     
     # Extract the response from Gemini
     response_text = response.text
-    print(f"TARS says: {response_text}")
+    print(Fore.MAGENTA + f"TARS says: {response_text}")  # Color Gemini's response magenta
 
     # Convert Gemini's text response to speech
     talk(response_text)
